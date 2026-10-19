@@ -1,6 +1,6 @@
 # Fullplan
 
-Uma skill para discutir uma ideia, alinhar as decisões e salvar um plano padronizado em Markdown antes de implementar.
+Uma skill para questionar a raiz de um problema, testar premissas e construir um caminho conforme as respostas, com fechamento confirmado pelo usuário e plano Markdown opcional.
 
 O fluxo combina a entrevista em rodadas da `grilling` com a síntese documental da `to-spec`, em uma única skill independente. Nenhuma delas precisa estar instalada.
 
@@ -35,12 +35,16 @@ Também é possível pedir em linguagem natural:
 ## Como funciona
 
 1. Consulta as instruções do projeto e investiga os fatos relevantes.
-2. Organiza as decisões por dependência e faz perguntas em rodadas, com recomendações.
+2. Investiga causas, testa premissas, riscos e alternativas e adapta as perguntas e recomendações às respostas.
 3. Usa subagentes para buscas independentes quando disponíveis e permitidos.
-4. Ao concluir o alinhamento, salva ou atualiza o plano local automaticamente.
-5. Apresenta o arquivo para revisão antes de iniciar a implementação.
+4. Quando considera o escopo definido, resume o entendimento e pergunta se está correto e podem fechar.
+5. Pergunta separadamente se você quer salvar ou atualizar um `.md` ou encerrar somente no chat. Grava o plano apenas quando autorizado e apresenta o arquivo para revisão.
 
-Você não precisa executar outro comando para gerar o documento. Se pedir o arquivo antes de resolver todas as decisões, recebe um rascunho com as pendências explícitas.
+O objetivo é colocar a proposta à prova antes de fechar um caminho, considerando inclusive soluções mais simples ou não implementar. Confirmar o escopo não autoriza automaticamente gravar um arquivo ou iniciar a implementação. Você pode encerrar somente no chat; se quiser o documento, basta responder, sem outro comando. Se pedir o arquivo antes de resolver todas as decisões, recebe um rascunho com as pendências explícitas.
+
+No chat, cada decisão aparece em um bloco próprio, com 💬 **Pergunta** e 💡 **Recomendação** separadas por uma linha em branco. Alternativas ficam em itens separados; ✅ identifica decisões alinhadas e 📌 destaca contexto ou pendências quando necessário. Esse padrão de comunicação não altera o modelo do plano salvo.
+
+A entrevista acontece exclusivamente por texto no chat. A skill não usa ferramentas de perguntas do Codex ou de outras plataformas, nem abre popups, formulários ou seletores interativos para coletar respostas ou aprovações.
 
 ## Estrutura do plano
 
@@ -56,7 +60,7 @@ O plano segue o idioma da conversa e as convenções documentais do projeto. Na 
 
 ## Limites
 
-A skill planeja e grava Markdown local. Implementação, publicação, commits e escritas em banco dependem de uma etapa posterior e das autorizações do projeto. Ela não concede permissões adicionais nem substitui os SSOTs existentes.
+A skill conduz o planejamento crítico e grava Markdown local quando solicitado ou autorizado. Implementação, publicação, commits e escritas em banco dependem de uma etapa posterior e das autorizações do projeto. Ela não concede permissões adicionais nem substitui os SSOTs existentes.
 
 O comportamento depende do agente e das ferramentas disponíveis. A skill não exige um servidor MCP específico nem as skills de origem.
 
