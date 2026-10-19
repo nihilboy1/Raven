@@ -1,0 +1,4 @@
+interface:
+  display_name: "Fullplan"
+  short_description: "Alinhe decisoes e gere um plano local em Markdown"
+  default_prompt: "Use $fullplan para discutir minha ideia e salvar um plano em Markdown antes de implementar."
