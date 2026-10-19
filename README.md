@@ -21,13 +21,13 @@ Para instalar manualmente no Codex, copie `SKILL.md` e a pasta `agents/` deste r
 No Codex:
 
 ```text
-$fullplan Quero planejar uma funcionalidade de notificações.
+$fullplan Os usuários estão perdendo prazos. Quero entender a causa e discutir se notificações resolveriam.
 ```
 
 Também é possível pedir em linguagem natural:
 
 ```text
-#fullplan Quero discutir esta ideia e gerar o plano em Markdown.
+#fullplan Quero colocar esta ideia à prova e alinhar um caminho antes de implementar.
 ```
 
 `$fullplan` é a invocação de skill; `#fullplan` é um texto reconhecido pelas instruções da skill, não um comando especial do aplicativo.
@@ -35,10 +35,13 @@ Também é possível pedir em linguagem natural:
 ## Como funciona
 
 1. Consulta as instruções do projeto e investiga os fatos relevantes.
-2. Investiga causas, testa premissas, riscos e alternativas e adapta as perguntas e recomendações às respostas.
+2. Separa sintomas, hipóteses e evidências; investiga quem enfrenta o problema, seu impacto e o resultado esperado.
 3. Usa subagentes para buscas independentes quando disponíveis e permitidos.
-4. Quando considera o escopo definido, resume o entendimento e pergunta se está correto e podem fechar.
-5. Pergunta separadamente se você quer salvar ou atualizar um `.md` ou encerrar somente no chat. Grava o plano apenas quando autorizado e apresenta o arquivo para revisão.
+4. Testa premissas, riscos e alternativas e adapta as perguntas e recomendações às respostas, sem conduzir a uma solução predeterminada.
+5. Quando considera o escopo definido, resume o entendimento e pergunta se está correto e podem fechar.
+6. Pergunta separadamente se você quer salvar ou atualizar um `.md` ou encerrar somente no chat. Grava o plano apenas quando autorizado e apresenta o arquivo para revisão.
+
+As perguntas são organizadas por dependência: decisões independentes podem aparecer na mesma rodada; as que dependem de respostas anteriores ficam para depois. A skill aguarda suas respostas antes de avançar e não pergunta por fatos que consegue verificar no ambiente. Recomendações incluem o motivo ou a principal consequência da escolha.
 
 O objetivo é colocar a proposta à prova antes de fechar um caminho, considerando inclusive soluções mais simples ou não implementar. Confirmar o escopo não autoriza automaticamente gravar um arquivo ou iniciar a implementação. Você pode encerrar somente no chat; se quiser o documento, basta responder, sem outro comando. Se pedir o arquivo antes de resolver todas as decisões, recebe um rascunho com as pendências explícitas.
 
@@ -46,7 +49,19 @@ No chat, cada decisão aparece em um bloco próprio, com 💬 **Pergunta** e �
 
 A entrevista acontece exclusivamente por texto no chat. A skill não usa ferramentas de perguntas do Codex ou de outras plataformas, nem abre popups, formulários ou seletores interativos para coletar respostas ou aprovações.
 
-## Estrutura do plano
+## Fechamento da conversa
+
+O agente propõe o fechamento quando problema, resultado esperado, caminho, limites e critérios de sucesso estão suficientemente definidos, sem decisões materiais em aberto. Não prolonga a entrevista por detalhes rotineiros.
+
+O resumo de fechamento reúne o problema, a causa sustentada ou hipótese ainda incerta, o resultado esperado, o caminho proposto, o escopo, as exclusões e eventuais riscos ou pendências. Depois, apresenta duas perguntas separadas, por exemplo:
+
+> 💬 **Confirmar escopo:** esse resumo corresponde ao que você quer? Podemos fechar assim?
+>
+> 💬 **Salvar documento:** quer que eu salve esse entendimento em `.md` ou prefere encerrar somente no chat?
+
+Se você corrigir algo, a skill retoma os pontos afetados e apresenta o resumo revisado. Se responder apenas a uma das perguntas, ela esclarece somente a outra, aproveitando autorizações já dadas. Confirmar o fechamento e dispensar o documento encerra o fluxo sem criar ou alterar um plano.
+
+## Estrutura do plano opcional
 
 - Problema e solução.
 - Histórias de uso.
