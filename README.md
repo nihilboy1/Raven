@@ -1,4 +1,8 @@
-# Fullplan
+<p align="center">
+  <img src="logo.png" alt="Raven" width="420">
+</p>
+
+# Raven
 
 Uma skill para questionar a raiz de um problema, testar premissas e construir um caminho conforme as respostas, com fechamento confirmado pelo usuário e plano Markdown opcional.
 
@@ -9,28 +13,28 @@ O fluxo combina a entrevista em rodadas da `grilling` com a síntese documental 
 Com o CLI Skills:
 
 ```sh
-npx skills add nihilboy1/fullplan --skill fullplan
+npx skills add nihilboy1/raven --skill raven
 ```
 
 Selecione o agente e o escopo de instalação desejados no instalador.
 
-Para instalar manualmente no Codex, copie `SKILL.md` e a pasta `agents/` deste repositório para `~/.codex/skills/fullplan/`. Se `CODEX_HOME` estiver definido, use sua pasta `skills/fullplan/`. Preserve eventuais personalizações de uma instalação anterior antes de substituí-la.
+Para instalar manualmente no Codex, copie `SKILL.md` e a pasta `agents/` deste repositório para `~/.codex/skills/raven/`. Se `CODEX_HOME` estiver definido, use sua pasta `skills/raven/`. Preserve eventuais personalizações de uma instalação anterior antes de substituí-la.
 
 ## Uso
 
 No Codex:
 
 ```text
-$fullplan Os usuários estão perdendo prazos. Quero entender a causa e discutir se notificações resolveriam.
+$raven Os usuários estão perdendo prazos. Quero entender a causa e discutir se notificações resolveriam.
 ```
 
 Também é possível pedir em linguagem natural:
 
 ```text
-#fullplan Quero colocar esta ideia à prova e alinhar um caminho antes de implementar.
+#raven Quero colocar esta ideia à prova e alinhar um caminho antes de implementar.
 ```
 
-`$fullplan` é a invocação de skill; `#fullplan` é um texto reconhecido pelas instruções da skill, não um comando especial do aplicativo.
+`$raven` é a invocação de skill; `#raven` é um texto reconhecido pelas instruções da skill, não um comando especial do aplicativo.
 
 ## Como funciona
 
@@ -45,7 +49,7 @@ As perguntas são organizadas por dependência: decisões independentes podem ap
 
 O objetivo é colocar a proposta à prova antes de fechar um caminho, considerando inclusive soluções mais simples ou não implementar. Confirmar o escopo não autoriza automaticamente gravar um arquivo ou iniciar a implementação. Você pode encerrar somente no chat; se quiser o documento, basta responder, sem outro comando. Se pedir o arquivo antes de resolver todas as decisões, recebe um rascunho com as pendências explícitas.
 
-No chat, cada decisão aparece em um bloco próprio, com 💬 **Pergunta** e 💡 **Recomendação** separadas por uma linha em branco. Alternativas ficam em itens separados; ✅ identifica decisões alinhadas e 📌 destaca contexto ou pendências quando necessário. Esse padrão de comunicação não altera o modelo do plano salvo.
+Na primeira resposta de cada execução, a skill se apresenta com 🐦‍⬛ **Raven**, sem repetir a apresentação nas rodadas seguintes ou ao retomar o mesmo planejamento. No chat, cada decisão aparece em um bloco próprio, com 🔎 **Pergunta** e 💡 **Recomendação** separadas por uma linha em branco. Alternativas ficam em itens separados; ✅ identifica decisões alinhadas, 📄 apresenta contexto e 🟪 destaca pendências quando necessário. Esse padrão de comunicação não altera o modelo do plano salvo.
 
 A entrevista acontece exclusivamente por texto no chat. A skill não usa ferramentas de perguntas do Codex ou de outras plataformas, nem abre popups, formulários ou seletores interativos para coletar respostas ou aprovações.
 
@@ -55,9 +59,9 @@ O agente propõe o fechamento quando problema, resultado esperado, caminho, limi
 
 O resumo de fechamento reúne o problema, a causa sustentada ou hipótese ainda incerta, o resultado esperado, o caminho proposto, o escopo, as exclusões e eventuais riscos ou pendências. Depois, apresenta duas perguntas separadas, por exemplo:
 
-> 💬 **Confirmar escopo:** esse resumo corresponde ao que você quer? Podemos fechar assim?
+> 🔎 **Confirmar escopo:** esse resumo corresponde ao que você quer? Podemos fechar assim?
 >
-> 💬 **Salvar documento:** quer que eu salve esse entendimento em `.md` ou prefere encerrar somente no chat?
+> 🔎 **Salvar documento:** quer que eu salve esse entendimento em `.md` ou prefere encerrar somente no chat?
 
 Se você corrigir algo, a skill retoma os pontos afetados e apresenta o resumo revisado. Se responder apenas a uma das perguntas, ela esclarece somente a outra, aproveitando autorizações já dadas. Confirmar o fechamento e dispensar o documento encerra o fluxo sem criar ou alterar um plano.
 
@@ -82,6 +86,32 @@ O comportamento depende do agente e das ferramentas disponíveis. A skill não e
 ## Manutenção
 
 `SKILL.md` é a fonte das instruções e do modelo do plano. `agents/openai.yaml` contém os metadados de apresentação no Codex. Alterações neste repositório não atualizam automaticamente cópias já instaladas; reinstale ou sincronize os arquivos após revisar as mudanças.
+
+## Validação
+
+O workflow `.github/workflows/validate-skill.yml` executa a validação em pushes, pull requests e acionamentos manuais no GitHub Actions. O validador fica em `scripts/quick_validate.py`, adaptado do `skill-creator` do Codex, sem depender da instalação local do aplicativo.
+
+Para executar localmente, na pasta do repositório:
+
+```sh
+python -m venv .venv
+```
+
+No PowerShell:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
+.\.venv\Scripts\python.exe -X utf8 scripts/quick_validate.py .
+```
+
+Em Linux ou macOS:
+
+```sh
+.venv/bin/python -m pip install -r requirements-dev.txt
+.venv/bin/python -X utf8 scripts/quick_validate.py .
+```
+
+A validação verifica o frontmatter, as regras de nome e descrição e placeholders inacabados. Ela não avalia o comportamento da entrevista. A pasta `.venv/` é ignorada pelo Git.
 
 ## Créditos e licença
 

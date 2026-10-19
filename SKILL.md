@@ -1,15 +1,15 @@
 ---
-name: fullplan
-description: "Questione a raiz de um problema, teste premissas e construa um caminho em rodadas de planejamento critico, com fechamento confirmado pelo usuario e plano Markdown opcional. Use quando o usuario pedir fullplan, #fullplan, $fullplan ou esse fluxo completo de planejamento."
+name: raven
+description: "Questione a raiz de um problema, teste premissas e construa um caminho em rodadas de planejamento critico, com fechamento confirmado pelo usuario e plano Markdown opcional. Use quando o usuario pedir raven, #raven, $raven ou esse fluxo completo de planejamento."
 ---
 
-# Fullplan
+# Raven
 
 Skill pessoal que integra o fluxo de entrevista de `grilling` com a sintese documental de `to-spec`. E autonoma: nao carregue nem invoque essas duas skills. O padrao do documento esta definido aqui.
 
 ## Resultado e preparacao
 
-Desde o inicio, trabalhe para compreender a raiz do problema e construir um caminho fundamentado nas respostas do usuario e nas evidencias. Avise brevemente que questionara as premissas, alinhara o escopo e, ao final, confirmara o entendimento e perguntara se o usuario quer um plano `.md`. Use a lingua do usuario.
+Desde o inicio, trabalhe para compreender a raiz do problema e construir um caminho fundamentado nas respostas do usuario e nas evidencias. Na primeira resposta de cada execucao da Raven, inicie a abertura com 🐦‍⬛ **Raven**; nao repita essa apresentacao nas rodadas seguintes ou ao retomar o mesmo planejamento. Avise brevemente que questionara as premissas, alinhara o escopo e, ao final, confirmara o entendimento e perguntara se o usuario quer um plano `.md`. Use a lingua do usuario.
 
 Leia as instrucoes do projeto e os SSOTs pertinentes antes de investigar. Respeite as regras de exploracao do repositorio, incluindo CodeGraph quando exigido. Reaproveite fatos verificados, decisoes aprovadas e planos existentes; nao reabra planejamento aprovado sem mudanca material de comportamento, arquitetura ou escopo.
 
@@ -29,9 +29,9 @@ Mapeie as decisoes como uma arvore: cada escolha pode desbloquear outras. A fron
 
 ### Padrao de escrita no chat
 
-Separe contexto, perguntas e recomendacoes em blocos curtos. Use emojis simples com significado estavel e sempre acompanhados de um rotulo escrito: 💬 Pergunta, 💡 Recomendacao, ✅ Decisao alinhada e 📌 Contexto ou pendencia. Use somente os blocos pertinentes; nao repita o resumo completo a cada rodada.
+Separe contexto, perguntas e recomendacoes em blocos curtos. Use emojis simples com significado estavel e sempre acompanhados de um rotulo escrito: 🔎 Pergunta, 💡 Recomendacao, ✅ Decisao alinhada, 📄 Contexto e 🟪 Pendencia. Use somente os blocos pertinentes; nao repita o resumo completo a cada rodada.
 
-Deixe uma linha em branco entre blocos, entre itens de listas e entre decisoes. Coloque cada alternativa em um item proprio, com identificador curto para facilitar respostas como `Q1: A; Q2: B`. Evite paragrafos que misturem varias perguntas, alternativas e justificativas. Use negrito nos titulos e rotulos, sem transformar paragrafos inteiros em destaque. Reserve os emojis aos rotulos dos blocos, sem decoracao adicional.
+Deixe uma linha em branco entre blocos, entre itens de listas e entre decisoes. Coloque cada alternativa em um item proprio, com identificador curto para facilitar respostas como `Q1: A; Q2: B`. Evite paragrafos que misturem varias perguntas, alternativas e justificativas. Use negrito nos titulos e rotulos, sem transformar paragrafos inteiros em destaque. Reserve os emojis aos rotulos dos blocos e a apresentacao inicial da Raven, sem decoracao adicional.
 
 Em cada decisao, apresente a pergunta primeiro, as alternativas quando forem uteis e a recomendacao em um paragrafo separado, com o motivo ou tradeoff principal. Uma recomendacao continua sendo uma proposta ate o usuario aprova-la; use ✅ somente para decisoes efetivamente alinhadas. Nao force alternativas em perguntas abertas nem acrescente blocos vazios para completar o formato.
 
@@ -42,7 +42,7 @@ Use este formato no canal de resposta final da rodada:
 ```text
 **Q1 — Titulo da decisao**
 
-💬 **Pergunta:** pergunta objetiva sobre uma unica decisao.
+🔎 **Pergunta:** pergunta objetiva sobre uma unica decisao.
 
 - **A.** Primeira alternativa.
 
@@ -52,7 +52,7 @@ Use este formato no canal de resposta final da rodada:
 
 **Q2 — Titulo da proxima decisao independente**
 
-💬 **Pergunta:** proxima pergunta objetiva.
+🔎 **Pergunta:** proxima pergunta objetiva.
 
 💡 **Recomendacao:** escolha sugerida e motivo ou tradeoff principal.
 ```
@@ -133,4 +133,4 @@ Use o status de aprovado somente quando houver aprovacao explicita correspondent
 
 Quando houver arquivo autorizado, releia o plano salvo contra a conversa: cobertura do escopo, fidelidade das decisoes, criterios testaveis, dependencias, pendencias explicitas, links corretos e ausencia de contradicoes com os SSOTs. Nenhuma secao pode converter uma recomendacao nao aprovada em decisao do usuario.
 
-Se salvou o `.md`, entregue seu link absoluto clicavel, um resumo curto e eventuais bloqueios. Se o usuario dispensou o arquivo, confirme o fechamento somente no chat. A aprovacao do escopo nao autoriza implementacao. Apresente o plano concreto para aprovacao antes de implementar, salvo se aquele mesmo plano ja estiver aprovado. Nao implemente, publique issues, faca commit/push ou execute escritas em banco como parte de `fullplan`. A implementacao posterior segue as autorizacoes do usuario e os gates do projeto.
+Se salvou o `.md`, entregue seu link absoluto clicavel, um resumo curto e eventuais bloqueios. Se o usuario dispensou o arquivo, confirme o fechamento somente no chat. A aprovacao do escopo nao autoriza implementacao. Apresente o plano concreto para aprovacao antes de implementar, salvo se aquele mesmo plano ja estiver aprovado. Nao implemente, publique issues, faca commit/push ou execute escritas em banco como parte de `raven`. A implementacao posterior segue as autorizacoes do usuario e os gates do projeto.
