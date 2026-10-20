@@ -1,4 +1,4 @@
 interface:
   display_name: "Raven"
-  short_description: "Questione o problema e alinhe um caminho com plano opcional"
-  default_prompt: "Use $raven para questionar a raiz do problema, testar minha ideia e alinhar um caminho; confirme o escopo comigo e pergunte se quero salvar em Markdown."
+  short_description: "Entrevista crítica com documento opcional ao final"
+  default_prompt: "Use $raven para questionar premissas e aprofundar o que eu trouxer em uma entrevista crítica; ao final, confirme o entendimento comigo e pergunte se quero um documento."
