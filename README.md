@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="logo.png" alt="Raven" width="420">
+  <img src="logo.png?v=angular" alt="Raven" width="420">
 </p>
 
 # Raven
