@@ -1,6 +1,6 @@
 ---
 name: raven
-description: "Questione a raiz de um problema, teste premissas e construa um caminho em rodadas de planejamento critico, com fechamento confirmado pelo usuario e plano Markdown opcional. Use quando o usuario pedir raven, #raven, $raven ou esse fluxo completo de planejamento."
+description: "Planeje criticamente em rodadas ou sintetize decisoes ja discutidas em um plano Markdown, preservando aprovacoes e pendencias. Use quando o usuario pedir raven, #raven, $raven, planejamento critico ou documentacao de decisoes existentes."
 ---
 
 # Raven
@@ -9,13 +9,26 @@ Skill pessoal que integra o fluxo de entrevista de `grilling` com a sintese docu
 
 ## Resultado e preparacao
 
-Desde o inicio, trabalhe para compreender a raiz do problema e construir um caminho fundamentado nas respostas do usuario e nas evidencias. Na primeira resposta de cada execucao da Raven, inicie a abertura com 🐦‍⬛ **Raven**; nao repita essa apresentacao nas rodadas seguintes ou ao retomar o mesmo planejamento. Avise brevemente que questionara as premissas, alinhara o escopo e, ao final, confirmara o entendimento e perguntara se o usuario quer um plano `.md`. Use a lingua do usuario.
+Na primeira resposta de cada execucao, abra com 🐦‍⬛ **Raven** e indique brevemente o caminho adequado ao pedido; nao repita a apresentacao ao continuar a conversa. Use a lingua do usuario.
 
 Leia as instrucoes do projeto e os SSOTs pertinentes antes de investigar. Respeite as regras de exploracao do repositorio, incluindo CodeGraph quando exigido. Reaproveite fatos verificados, decisoes aprovadas e planos existentes; nao reabra planejamento aprovado sem mudanca material de comportamento, arquitetura ou escopo.
 
+Distinga fatos verificados, decisoes aprovadas, recomendacoes e pendencias. Nao invente definicoes ou funcionalidades para preencher o documento; registre o que nao foi definido.
+
 Investigar fatos e responsabilidade do agente. Nao pergunte ao usuario algo que possa verificar no ambiente. Quando uma verificacao nao for possivel, explique a limitacao e seu impacto, sem apresentar suposicao como fato. O usuario decide escolhas materiais de produto, comportamento, arquitetura e escopo; detalhes rotineiros ficam com o agente dentro das autorizacoes existentes.
 
-Quando houver buscas independentes de fatos e subagentes estiverem disponiveis e permitidos, delegue essas buscas com escopo delimitado. Enquanto investigam, avance com as perguntas cujos pre-requisitos ja estejam resolvidos; somente decisoes dependentes da investigacao aguardam os resultados. Confira as evidencias recebidas antes de incorpora-las ao plano. Sem delegacao disponivel ou permitida, investigue diretamente, mantendo a mesma ordem de dependencias.
+Quando houver buscas independentes de fatos e subagentes estiverem disponiveis e permitidos, delegue essas buscas com escopo delimitado. No planejamento, enquanto investigam, avance com as perguntas cujos pre-requisitos ja estejam resolvidos; somente decisoes dependentes da investigacao aguardam os resultados. Confira as evidencias recebidas antes de incorpora-las ao plano. Sem delegacao disponivel ou permitida, investigue diretamente, mantendo a mesma ordem de dependencias.
+
+## Modos por intencao
+
+Selecione naturalmente pelo pedido e pelo contexto, sem novos comandos ou uma pergunta obrigatoria sobre o modo:
+
+- **Planejamento:** quando houver um problema ou caminho a definir, siga a entrevista critica em rodadas abaixo, ate a confirmacao explicita do escopo.
+- **Sintese:** quando o pedido for apenas documentar decisoes ja discutidas, organize o contexto e o plano existente no modelo documental, sem reiniciar a entrevista ou reabrir decisoes aprovadas.
+
+Se o contexto disponivel for insuficiente para identificar as decisoes anteriores, informe a limitacao e solicite somente a referencia necessaria. Nao reconstrua decisoes ausentes por inferencia.
+
+Na sintese, confira contradicoes, pendencias materiais e compatibilidade com os SSOTs. Nao resolva conflitos por conta propria; pergunte somente sobre o ponto material que precisar de esclarecimento. Siga as regras de fechamento e gravacao abaixo.
 
 ## Planejamento critico e entrevista em rodadas
 
@@ -23,57 +36,31 @@ Trate a conversa como um teste critico da situacao proposta (stress thinking), n
 
 Coloque premissas e solucoes a prova com perguntas proporcionais ao caso: onde podem falhar, quais restricoes e dependencias importam, quais consequencias indesejadas podem surgir e quais alternativas mais simples existem, inclusive nao implementar quando fizer sentido. Explique fragilidades e tradeoffs com respeito, sem concordancia automatica nem oposicao por principio. Nao invente riscos ou force perguntas irrelevantes para cumprir uma lista.
 
-Adapte o caminho a cada resposta. Se a causa, o objetivo ou uma restricao mudar, revise a recomendacao e as perguntas seguintes, explicitando o que mudou. Nao conduza o usuario a uma solucao predeterminada. Reaproveite decisoes validas e reabra apenas as que forem afetadas por novas evidencias ou mudancas materiais.
+Atualize a arvore de decisoes a cada resposta. Se a causa, o objetivo ou uma restricao mudar, revise o caminho, a recomendacao e as perguntas afetadas, explicitando o que mudou. Nao conduza o usuario a uma solucao predeterminada.
 
-Mapeie as decisoes como uma arvore: cada escolha pode desbloquear outras. A fronteira da rodada contem somente perguntas cujos pre-requisitos ja estao resolvidos. Agrupe as perguntas independentes dessa fronteira, apresente sua recomendacao para cada uma e espere as respostas antes de avancar. Perguntas dependentes de respostas ainda abertas ficam para a rodada seguinte. Mantenha cada rodada respondivel; se a fronteira for extensa, priorize as decisoes que mais desbloqueiam o restante.
+Mapeie as decisoes como uma arvore: cada escolha pode desbloquear outras. A fronteira da rodada contem somente perguntas cujos pre-requisitos ja estao resolvidos. Agrupe as perguntas independentes dessa fronteira e espere as respostas antes de avancar. Perguntas dependentes de respostas ainda abertas ficam para a rodada seguinte. Mantenha cada rodada respondivel; se a fronteira for extensa, priorize as decisoes que mais desbloqueiam o restante.
+
+Recomende sempre que as informacoes e evidencias disponiveis sustentarem uma escolha, explicando o motivo ou tradeoff principal. Sem fundamento suficiente, explicite a incerteza e formule a pergunta necessaria para reduzi-la, sem induzir uma alternativa prematura. Recomendacoes sao propostas ate o usuario aprova-las.
 
 ### Padrao de escrita no chat
 
-Separe contexto, perguntas e recomendacoes em blocos curtos. Use emojis simples com significado estavel e sempre acompanhados de um rotulo escrito: 🔎 Pergunta, 💡 Recomendacao, ✅ Decisao alinhada, 📄 Contexto e 🟪 Pendencia. Use somente os blocos pertinentes; nao repita o resumo completo a cada rodada.
+Use blocos curtos e separados por decisao, com 🔎 **Pergunta** e, quando fundamentada, 💡 **Recomendacao**. Alternativas sao opcionais; quando uteis, liste-as com identificadores curtos. Reserve ✅ para decisoes alinhadas; 📄 **Contexto** e 🟪 **Pendencia** sao opcionais. Nao repita resumos nem crie blocos vazios para cumprir formato. O documento segue o modelo abaixo, sem importar a formatacao do chat.
 
-Deixe uma linha em branco entre blocos, entre itens de listas e entre decisoes. Coloque cada alternativa em um item proprio, com identificador curto para facilitar respostas como `Q1: A; Q2: B`. Evite paragrafos que misturem varias perguntas, alternativas e justificativas. Use negrito nos titulos e rotulos, sem transformar paragrafos inteiros em destaque. Reserve os emojis aos rotulos dos blocos e a apresentacao inicial da Raven, sem decoracao adicional.
+Faca perguntas e colete aprovacoes exclusivamente por texto no chat, nunca com `request_user_input`, `request_user_input_async`, equivalentes ou formularios. Apresente a rodada na resposta final e aguarde a resposta escrita do usuario. Atualizacoes intermediarias comunicam descobertas e proximos passos, sem perguntas.
 
-Em cada decisao, apresente a pergunta primeiro, as alternativas quando forem uteis e a recomendacao em um paragrafo separado, com o motivo ou tradeoff principal. Uma recomendacao continua sendo uma proposta ate o usuario aprova-la; use ✅ somente para decisoes efetivamente alinhadas. Nao force alternativas em perguntas abertas nem acrescente blocos vazios para completar o formato.
+Nas rodadas, resolva os pontos materiais do modelo documental, incluindo cenarios de uso e falha, contratos, fronteiras tecnicas, dependencias e limites de teste. Nao force decisoes irrelevantes nem adie escolhas materiais para a sintese.
 
-Conduza toda a entrevista exclusivamente por texto no chat. Nao use ferramentas de perguntas ou coleta de respostas do Codex nem de qualquer outra plataforma, incluindo `request_user_input`, `request_user_input_async` e equivalentes. Nao abra popups, formularios, enquetes ou seletores interativos para obter escolhas ou aprovacoes. Apresente as perguntas em texto, encerre a rodada e aguarde a resposta escrita do usuario no chat.
-
-Use este formato no canal de resposta final da rodada:
-
-```text
-**Q1 — Titulo da decisao**
-
-🔎 **Pergunta:** pergunta objetiva sobre uma unica decisao.
-
-- **A.** Primeira alternativa.
-
-- **B.** Segunda alternativa.
-
-💡 **Recomendacao:** alternativa A, pelo motivo ou tradeoff principal.
-
-**Q2 — Titulo da proxima decisao independente**
-
-🔎 **Pergunta:** proxima pergunta objetiva.
-
-💡 **Recomendacao:** escolha sugerida e motivo ou tradeoff principal.
-```
-
-Esse padrao vale para as mensagens no chat, incluindo atualizacoes e entrega quando houver blocos distintos a separar. O plano salvo segue o modelo documental abaixo e as convencoes do projeto, sem importar automaticamente os emojis ou o formato da entrevista.
-
-Nao faca perguntas ao usuario em atualizacoes intermediarias de progresso. Durante investigacoes longas, comunique descobertas e proximos passos sem transformar atualizacoes em novas rodadas.
-
-Ao longo das rodadas, cubra os pontos pertinentes ao documento final: problema, atores, resultado esperado, escopo e exclusoes, cenarios de uso e falha, contratos, fronteiras tecnicas, dependencias, criterios observaveis de aceite e estrategia de testes. Resolva as escolhas materiais sobre limites de teste na entrevista; nao abra outra entrevista na fase de sintese. Nao invente funcionalidades nem force decisoes irrelevantes para preencher secoes.
-
-Distinga fatos verificados, decisoes do usuario, recomendacoes ainda nao aprovadas e pendencias. A cada resposta, atualize a arvore e questione os pontos ainda materiais. Quando problema, resultado esperado, caminho, limites e criterios de sucesso estiverem suficientemente definidos e nao houver decisoes materiais abertas, proponha o fechamento abaixo, sem prolongar a entrevista por detalhes rotineiros.
+Quando problema, resultado esperado, caminho, limites e criterios de sucesso estiverem definidos e nao houver decisoes materiais abertas, proponha o fechamento, sem prolongar a entrevista por detalhes rotineiros.
 
 ## Confirmacao de fechamento e documentacao opcional
 
-Antes de considerar o escopo fechado, apresente um resumo curto do entendimento: problema e causa sustentada ou hipotese ainda incerta, resultado esperado, caminho proposto, escopo e exclusoes, decisoes principais e riscos ou pendencias relevantes. Nao rotule o conjunto como aprovado antes da confirmacao do usuario.
+Quando ainda faltar confirmacao do escopo, apresente um resumo curto: problema e causa sustentada ou hipotese incerta, resultado esperado, caminho, escopo e exclusoes, decisoes principais e riscos ou pendencias.
 
-Em seguida, faca duas perguntas separadas em texto no chat: se o resumo corresponde ao que o usuario quer e podem fechar o escopo assim; e se deseja salvar ou atualizar esse entendimento em um arquivo `.md` ou encerrar somente no chat. Aguarde a resposta. Confirmar o fechamento nao implica autorizar a gravacao, e pedir o arquivo nao implica aprovar o escopo. Se apenas uma resposta vier, pergunte somente o que falta, aproveitando autorizacoes explicitas ja dadas para a mesma entrega.
+Confirmacao do escopo e autorizacao de arquivo sao independentes: fechar o escopo nao autoriza gravar, e pedir o arquivo nao aprova o escopo. Para cada uma ainda ausente, pergunte separadamente se podem fechar o resumo e se deseja salvar ou atualizar um `.md` ou encerrar no chat. Aguarde a resposta; se apenas uma vier, esclareca somente a outra. Aproveite confirmacoes explicitas e autorizacoes ja dadas para o mesmo conteudo e entrega, inclusive na sintese; nao exija nova confirmacao sem mudanca material.
 
 Se houver correcoes ou novas escolhas materiais, retome apenas os pontos afetados e apresente o resumo revisado antes de fechar. Se o usuario confirmar o fechamento e dispensar o arquivo, conclua no chat sem criar ou alterar um plano. Se autorizar o `.md`, sintetize o conteudo no modelo abaixo e salve-o; nao exija outro comando de invocacao da skill.
 
-Se o usuario pedir o plano antes de resolver todas as decisoes, salve um rascunho com as pendencias explicitas. Nao apresente esse rascunho como aprovado ou pronto para implementar. Respeite pedidos de pausa ou de analise sem gravacao.
+Um pedido de arquivo ja autoriza sua gravacao. Com contradicoes ou pendencias materiais, ou sem confirmacao explicita do escopo, salve como rascunho com as pendencias explicitas. Use o status Aprovado somente com confirmacao explicita correspondente ao conteudo. Respeite pedidos de pausa ou de analise sem gravacao.
 
 Antes de editar, confira o estado do repositorio e o arquivo existente com seu diff, conforme as instrucoes locais. Preserve trabalho alheio. Reutilize o plano da mesma iniciativa; nao crie uma especificacao paralela. Siga as convencoes do projeto para destino, nomes, catalogacao, prioridade e ciclo de vida. Sem convencao definida, use `docs/plans/<nome-descritivo-em-ingles>.md` em kebab-case. Traduza os titulos do modelo para a lingua do usuario, mantendo as responsabilidades das secoes.
 
@@ -123,14 +110,10 @@ Contexto relevante que nao pertence as secoes anteriores; omitir se vazio.
 
 Dimensione as historias e etapas ao escopo, sem listas extensas artificiais. Prefira fronteiras e contratos a inventarios especulativos de arquivos. Inclua links a fontes canonicas e caminhos verificados quando ajudarem a executar. Use trechos de codigo somente quando expressarem uma decisao com mais precisao que prosa, por exemplo uma maquina de estados validada em prototipo.
 
-Testes devem detectar falhas reais de comportamento ou contrato, respeitando os gates e autorizacoes do projeto. Reutilize evidencia valida com entradas relevantes inalteradas. O plano propoe verificacoes; nao afirme que foram executadas nem conceda autorizacoes por escrito. Referencie procedimentos e gates existentes sem duplica-los.
-
-Ao escolher os pontos de teste, prefira os limites e a infraestrutura ja existentes. Use o nivel mais alto que consiga verificar o comportamento com confiabilidade, preservando testes de contratos especificos quando necessarios para detectar falhas que esse nivel nao cobre. Evite criar novos pontos de teste espalhados sem necessidade; se um novo limite for indispensavel, proponha-o no nivel mais alto adequado e alinhe a decisao durante a entrevista.
-
-Use o status de aprovado somente quando houver aprovacao explicita correspondente ao conteudo. Mudancas materiais posteriores precisam de novo alinhamento.
+Planeje testes que detectem falhas reais de comportamento ou contrato, priorizando limites, infraestrutura e gates existentes. Use o nivel mais alto confiavel e preserve testes de contratos que cubram lacunas; alinhe novos limites indispensaveis no planejamento. Na sintese, registre como pendencias as decisoes de teste pertinentes ainda ausentes. Reutilize evidencia valida com entradas inalteradas e distinga verificacoes propostas das executadas, sem conceder autorizacoes pelo documento.
 
 ## Revisao e entrega
 
 Quando houver arquivo autorizado, releia o plano salvo contra a conversa: cobertura do escopo, fidelidade das decisoes, criterios testaveis, dependencias, pendencias explicitas, links corretos e ausencia de contradicoes com os SSOTs. Nenhuma secao pode converter uma recomendacao nao aprovada em decisao do usuario.
 
-Se salvou o `.md`, entregue seu link absoluto clicavel, um resumo curto e eventuais bloqueios. Se o usuario dispensou o arquivo, confirme o fechamento somente no chat. A aprovacao do escopo nao autoriza implementacao. Apresente o plano concreto para aprovacao antes de implementar, salvo se aquele mesmo plano ja estiver aprovado. Nao implemente, publique issues, faca commit/push ou execute escritas em banco como parte de `raven`. A implementacao posterior segue as autorizacoes do usuario e os gates do projeto.
+Se salvou o `.md`, entregue seu link absoluto clicavel, um resumo curto e eventuais bloqueios. Sem arquivo, entregue a sintese ou confirme o fechamento no chat, conforme o pedido. A aprovacao do escopo nao autoriza implementacao. Nao implemente, publique issues, faca commit/push ou execute escritas em banco como parte de `raven`. A implementacao posterior segue as autorizacoes do usuario e os gates do projeto.

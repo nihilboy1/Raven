@@ -4,7 +4,7 @@
 
 # Raven
 
-Uma skill para questionar a raiz de um problema, testar premissas e construir um caminho conforme as respostas, com fechamento confirmado pelo usuário e plano Markdown opcional.
+Uma skill para questionar a raiz de um problema, testar premissas e construir um caminho conforme as respostas, ou sintetizar decisões já discutidas, com confirmação explícita de escopo e autorização separada para salvar um plano Markdown.
 
 O fluxo combina a entrevista em rodadas da `grilling` com a síntese documental da `to-spec`, em uma única skill independente. Nenhuma delas precisa estar instalada.
 
@@ -38,6 +38,13 @@ Também é possível pedir em linguagem natural:
 
 ## Como funciona
 
+A Raven interpreta o pedido e o contexto para escolher entre dois modos, sem comandos adicionais:
+
+- **Planejamento:** entrevista crítica em rodadas para investigar o problema, testar caminhos e confirmar o escopo.
+- **Síntese:** organiza decisões já discutidas no modelo do plano, sem reiniciar a entrevista nem reabrir decisões aprovadas. Preserva aprovações e registra contradições e pendências, sem inventar definições; pede apenas esclarecimentos materiais necessários.
+
+No planejamento:
+
 1. Consulta as instruções do projeto e investiga os fatos relevantes.
 2. Separa sintomas, hipóteses e evidências; investiga quem enfrenta o problema, seu impacto e o resultado esperado.
 3. Usa subagentes para buscas independentes quando disponíveis e permitidos.
@@ -45,11 +52,11 @@ Também é possível pedir em linguagem natural:
 5. Quando considera o escopo definido, resume o entendimento e pergunta se está correto e podem fechar.
 6. Pergunta separadamente se você quer salvar ou atualizar um `.md` ou encerrar somente no chat. Grava o plano apenas quando autorizado e apresenta o arquivo para revisão.
 
-As perguntas são organizadas por dependência: decisões independentes podem aparecer na mesma rodada; as que dependem de respostas anteriores ficam para depois. A skill aguarda suas respostas antes de avançar e não pergunta por fatos que consegue verificar no ambiente. Recomendações incluem o motivo ou a principal consequência da escolha.
+As perguntas são organizadas por dependência: decisões independentes podem aparecer na mesma rodada; as que dependem de respostas anteriores ficam para depois. A skill aguarda suas respostas antes de avançar e não pergunta por fatos que consegue verificar no ambiente. Recomendações são feitas sempre que houver informações e evidências suficientes, com o motivo ou a principal consequência da escolha. Sem fundamento adequado, explicita a incerteza e pergunta o necessário, sem induzir uma alternativa.
 
 O objetivo é colocar a proposta à prova antes de fechar um caminho, considerando inclusive soluções mais simples ou não implementar. Confirmar o escopo não autoriza automaticamente gravar um arquivo ou iniciar a implementação. Você pode encerrar somente no chat; se quiser o documento, basta responder, sem outro comando. Se pedir o arquivo antes de resolver todas as decisões, recebe um rascunho com as pendências explícitas.
 
-Na primeira resposta de cada execução, a skill se apresenta com 🐦‍⬛ **Raven**, sem repetir a apresentação nas rodadas seguintes ou ao retomar o mesmo planejamento. No chat, cada decisão aparece em um bloco próprio, com 🔎 **Pergunta** e 💡 **Recomendação** separadas por uma linha em branco. Alternativas ficam em itens separados; ✅ identifica decisões alinhadas, 📄 apresenta contexto e 🟪 destaca pendências quando necessário. Esse padrão de comunicação não altera o modelo do plano salvo.
+Na primeira resposta de cada execução, a skill se apresenta com 🐦‍⬛ **Raven**. No chat, decisões usam blocos curtos com 🔎 **Pergunta** e, quando fundamentada, 💡 **Recomendação**. ✅ identifica decisões alinhadas; 📄 **Contexto** e 🟪 **Pendência** aparecem quando úteis. O documento mantém seu próprio modelo, sem a formatação do chat.
 
 A entrevista acontece exclusivamente por texto no chat. A skill não usa ferramentas de perguntas do Codex ou de outras plataformas, nem abre popups, formulários ou seletores interativos para coletar respostas ou aprovações.
 
@@ -65,6 +72,8 @@ O resumo de fechamento reúne o problema, a causa sustentada ou hipótese ainda 
 
 Se você corrigir algo, a skill retoma os pontos afetados e apresenta o resumo revisado. Se responder apenas a uma das perguntas, ela esclarece somente a outra, aproveitando autorizações já dadas. Confirmar o fechamento e dispensar o documento encerra o fluxo sem criar ou alterar um plano.
 
+Na síntese, confirmações e autorizações já dadas para o mesmo conteúdo e entrega são reaproveitadas. Pedir o arquivo já autoriza sua gravação, mas não aprova o escopo: sem confirmação explícita ou com pendências materiais, o documento fica como rascunho.
+
 ## Estrutura do plano opcional
 
 - Problema e solução.
@@ -79,7 +88,7 @@ O plano segue o idioma da conversa e as convenções documentais do projeto. Na 
 
 ## Limites
 
-A skill conduz o planejamento crítico e grava Markdown local quando solicitado ou autorizado. Implementação, publicação, commits e escritas em banco dependem de uma etapa posterior e das autorizações do projeto. Ela não concede permissões adicionais nem substitui os SSOTs existentes.
+A skill conduz o planejamento crítico ou a síntese de decisões e grava Markdown local quando solicitado ou autorizado. Implementação, publicação, commits e escritas em banco dependem de uma etapa posterior e das autorizações do projeto. Ela não concede permissões adicionais nem substitui os SSOTs existentes.
 
 O comportamento depende do agente e das ferramentas disponíveis. A skill não exige um servidor MCP específico nem as skills de origem.
 
