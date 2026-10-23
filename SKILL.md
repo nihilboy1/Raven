@@ -31,7 +31,7 @@ Se o pedido for apenas sintetizar uma conversa anterior, organize as decisoes ex
 
 ### Continuidade das questoes e ideias
 
-Identifique toda pergunta ao usuario com um codigo estavel: `Q1`, `Q2`, `Q3` e assim por diante, inclusive perguntas de confirmacao e fechamento. Desdobramentos recebem `Q1.1`, `Q1.2` e, se necessario, outros niveis. Continue a numeracao entre rodadas da mesma entrevista; nao reinicie, renumere nem reutilize codigos. Ao retomar uma pergunta, preserve seu codigo. A hierarquia indica desdobramento; dependencias entre questoes de ramos diferentes devem ser registradas separadamente.
+Identifique toda pergunta ao usuario com um codigo estavel: `Q1`, `Q2`, `Q3` e assim por diante, inclusive perguntas de confirmacao durante a entrevista. O fechamento e seus esclarecimentos nao recebem codigo `Q` nem consomem a numeracao; se a entrevista for retomada, continue do proximo codigo disponivel. Desdobramentos recebem `Q1.1`, `Q1.2` e, se necessario, outros niveis. Continue a numeracao entre rodadas da mesma entrevista; nao reinicie, renumere nem reutilize codigos. Ao retomar uma pergunta, preserve seu codigo. A hierarquia indica desdobramento; dependencias entre questoes de ramos diferentes devem ser registradas separadamente.
 
 Durante a execucao, mantenha no contexto da conversa um registro por questao: pergunta, respostas, ideias levantadas, fundamentos, decisoes e pendencias. Preserve tambem ideias propostas, adiadas ou descartadas, com o motivo quando conhecido; nao trate ausencia de resposta como aprovacao. Ao substituir uma decisao, registre a anterior, a nova e o motivo, sem reabrir pontos inalterados. Relacione ideias que afetam varias questoes, sem criar versoes conflitantes delas.
 
@@ -57,7 +57,7 @@ Nao conduza a conversa para preencher um modelo documental. Resolva as questoes 
 
 Proponha o fechamento quando o objetivo da conversa estiver atendido e nao houver decisoes materiais abertas. Resuma o entendimento, os principais achados ou decisoes e as limitacoes relevantes, conforme o assunto. Encerre apos resolver as confirmacoes e entregar o documento, se solicitado.
 
-Depois do resumo, apresente uma unica pergunta de fechamento com o proximo codigo `Q` da entrevista e estas tres opcoes, nesta ordem e com estes emojis. O usuario pode responder apenas `1`, `2` ou `3`:
+Depois do resumo, apresente uma unica pergunta de fechamento sem codigo `Q`, com estas tres opcoes, nesta ordem e com estes emojis. O usuario pode responder apenas `1`, `2` ou `3`:
 
 1️⃣ Concordo com o entendimento e quero encerrar no chat.
 2️⃣ Concordo com o entendimento e quero que escreva o plano em `.md` agora.
