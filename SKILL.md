@@ -29,6 +29,20 @@ Recomendacoes sao opcionais: so recomende quando houver fundamento suficiente, e
 
 Se o pedido for apenas sintetizar uma conversa anterior, organize as decisoes existentes sem reiniciar a entrevista. Confira contradicoes e pendencias; pergunte somente sobre conflitos materiais. Se faltar o contexto anterior, solicite apenas a referencia necessaria, sem reconstruir decisoes por inferencia.
 
+### Continuidade das questoes e ideias
+
+Identifique toda pergunta ao usuario com um codigo estavel: `Q1`, `Q2`, `Q3` e assim por diante, inclusive perguntas de confirmacao e fechamento. Desdobramentos recebem `Q1.1`, `Q1.2` e, se necessario, outros niveis. Continue a numeracao entre rodadas da mesma entrevista; nao reinicie, renumere nem reutilize codigos. Ao retomar uma pergunta, preserve seu codigo. A hierarquia indica desdobramento; dependencias entre questoes de ramos diferentes devem ser registradas separadamente.
+
+Durante a execucao, mantenha no contexto da conversa um registro por questao: pergunta, respostas, ideias levantadas, fundamentos, decisoes e pendencias. Preserve tambem ideias propostas, adiadas ou descartadas, com o motivo quando conhecido; nao trate ausencia de resposta como aprovacao. Ao substituir uma decisao, registre a anterior, a nova e o motivo, sem reabrir pontos inalterados. Relacione ideias que afetam varias questoes, sem criar versoes conflitantes delas.
+
+Atualize esse registro conforme a entrevista avanca e use-o para orientar as proximas perguntas. Mostre apenas mudancas e referencias relevantes, sem repetir o registro inteiro a cada rodada. Esse acompanhamento nao gera Markdown nem outros arquivos automaticamente e nao garante memoria entre chats. Reaproveite registros existentes fornecidos ou acessiveis; se faltar contexto, explicite a lacuna e solicite somente a referencia necessaria, sem inventar respostas ou decisoes.
+
+### Contrapontos com subagentes
+
+Antes de consolidar uma premissa ou escolha relevante, use subagentes para uma analise independente quando a incerteza, o impacto ou a existencia de alternativas justificar o contraponto, se disponiveis e permitidos. Delegue perguntas concretas: buscar evidencias contrarias a premissa central, testar condicoes em que a proposta falharia ou avaliar uma alternativa mais simples. Nao delegue por rotina toda pergunta nem exija discordancia: a analise pode concluir que a proposta se sustenta.
+
+Forneca os codigos das questoes, o contexto necessario, as fontes e as restricoes, distinguindo propostas de decisoes aprovadas. Peca fundamentos, evidencias e incertezas; uma objecao hipotetica nao e um fato verificado. Confira os achados antes de integra-los ao registro e apresente apenas divergencias uteis, vinculadas as questoes correspondentes. Contrapontos nao reabrem decisoes aprovadas sem evidencia ou mudanca material. Sem delegacao disponivel ou permitida, explique a limitacao e conduza a analise diretamente. A delegacao nao autoriza implementar sugestoes ou executar outras acoes fora do escopo da entrevista.
+
 ### Escrita no chat
 
 Use blocos curtos por questao ou decisao; contexto e pendencias aparecem somente quando uteis. Nao repita resumos nem crie blocos vazios para cumprir formato.

@@ -50,7 +50,17 @@ Antes de investigar, consulta as instruções e fontes pertinentes e respeita as
 
 As perguntas vêm em rodadas, organizadas por dependência: questões independentes podem aparecer juntas; as que dependem de respostas anteriores ficam para depois. A Raven espera suas respostas antes de avançar e adapta as próximas perguntas ao que mudou. Se houver muitas questões, prioriza as que mais esclarecem o restante.
 
+Toda pergunta recebe um código estável: `Q1`, `Q2`, `Q3`… Desdobramentos usam `Q1.1`, `Q1.2` e outros níveis quando necessário. A numeração continua entre rodadas da mesma entrevista, inclusive nas confirmações e no fechamento; códigos não são reiniciados, renumerados ou reutilizados. Você pode responder ou retomar um ponto pelo código. A hierarquia representa desdobramentos; dependências entre ramos são acompanhadas separadamente.
+
+Durante a execução, a Raven acompanha no contexto da conversa as respostas, ideias, fundamentos, decisões e pendências de cada questão. Preserva ideias propostas, adiadas ou descartadas e os motivos conhecidos. Ausência de resposta não significa aprovação. Se uma decisão mudar, mantém a referência ao que foi substituído e por quê, sem reabrir os demais pontos. No chat, mostra somente mudanças e referências úteis, sem repetir todo o registro.
+
+Esse acompanhamento não gera Markdown ou outros arquivos automaticamente e não garante memória entre chats. A Raven reaproveita registros existentes fornecidos ou acessíveis; se faltar contexto, explicita a lacuna e pede a referência necessária, sem reconstruir decisões por inferência. O documento de fechamento continua opcional.
+
 Quando uma pergunta precisa de um fato do ambiente, a skill envia um subagente para verificá-lo, se disponível e permitido; caso contrário, investiga diretamente. Só as perguntas dependentes dessa investigação aguardam o resultado; as demais avançam na rodada. O agente confere as evidências recebidas antes de usá-las. Fatos cabem ao agente; decisões cabem a você.
+
+Antes de consolidar premissas ou escolhas relevantes, também usa subagentes para contrapontos independentes quando a incerteza, o impacto ou as alternativas justificam essa análise, se disponíveis e permitidos. Eles podem buscar evidências contrárias, testar condições de falha ou avaliar uma alternativa mais simples. Recebem os códigos das questões, o contexto, as fontes e as restrições, distinguindo propostas de decisões aprovadas. Não precisam fabricar oposição: podem concluir que a ideia se sustenta.
+
+A Raven confere os fundamentos e as incertezas antes de incorporar os achados e apresenta somente divergências úteis, ligadas às questões correspondentes. Contrapontos só reabrem decisões aprovadas diante de evidência ou mudança material. Sem delegação disponível ou permitida, explica a limitação e faz a análise diretamente. Subagentes não recebem autorização adicional para executar sugestões.
 
 Recomendações são opcionais e só aparecem quando há fundamento suficiente, com o motivo ou a principal consequência da escolha. Sem fundamento, a Raven não força uma recomendação: explicita a incerteza e pergunta quando isso ajuda a avançar, sem conduzir a uma conclusão predeterminada.
 
