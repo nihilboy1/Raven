@@ -68,21 +68,25 @@ Ela não concorda automaticamente nem se opõe por princípio. Considera alterna
 
 Se você pedir apenas uma síntese de decisões já discutidas, ela aproveita o contexto, sem reiniciar a entrevista. Decisões aprovadas só são reabertas diante de mudanças materiais no objetivo, nas restrições ou no escopo. Contradições e pendências ficam explícitas; se faltar contexto anterior, ela pede a referência necessária, sem inventar decisões.
 
-**Emojis no chat:** 🐦‍⬛ apenas na primeira resposta a uma chamada explícita da skill pelo usuário, sem o nome da skill; não repetir nas continuações nem no fechamento. 🔎 pergunta; 💡 recomendação fundamentada; ✅ decisão alinhada; 📄 pergunta sobre gerar documento.
+**Emojis no chat:** 🐦‍⬛ apenas na primeira resposta a uma chamada explícita da skill pelo usuário, sem o nome da skill; não repetir nas continuações nem no fechamento. 🔎 pergunta; 💡 recomendação fundamentada; ✅ decisão alinhada; 📄 pergunta sobre gerar documento; 1️⃣ 2️⃣ 3️⃣ opções de fechamento.
 
 A entrevista acontece exclusivamente por texto no chat, sem ferramentas de perguntas, popups, formulários ou seletores interativos.
 
 ## Fechamento da conversa
 
-Quando o objetivo da conversa estiver atendido e não houver decisões materiais abertas, a Raven resume o entendimento, os principais achados ou decisões e as limitações relevantes. Depois, pergunta separadamente, quando essas respostas ainda não tiverem sido dadas:
+Quando o objetivo da conversa estiver atendido e não houver decisões materiais abertas, a Raven resume o entendimento, os principais achados ou decisões e as limitações relevantes. Depois, apresenta uma única pergunta com o próximo código `Q` da entrevista e três opções:
 
-> Esse resumo corresponde ao que discutimos? Podemos fechar assim?
+> 1️⃣ Concordo com o entendimento e quero encerrar no chat.
 >
-> Quer que eu gere um documento Markdown com esse entendimento ou prefere encerrar somente no chat?
+> 2️⃣ Concordo com o entendimento e quero que escreva o plano em `.md` agora.
+>
+> 3️⃣ Quero mais uma rodada de questionamento crítico sobre o assunto.
 
-Se você corrigir algo, ela retoma apenas os pontos afetados. Se responder a uma das perguntas, esclarece somente a outra. Confirmações e autorizações já dadas para o mesmo conteúdo e entrega são reaproveitadas.
+Você pode responder apenas `1`, `2` ou `3`, ou indicar sua escolha por escrito. A opção 1 aprova o entendimento e encerra sem criar arquivos. A opção 2 aprova o entendimento e autoriza escrever ou atualizar o plano em Markdown imediatamente, sem nova confirmação ou invocação da skill. A opção 3 abre outra rodada crítica, preservando os códigos das questões e as decisões já aprovadas; ao propor novamente o fechamento, a Raven apresenta o resumo atualizado e as mesmas três opções.
 
-Confirmar o entendimento não autoriza gravar um arquivo ou executar as sugestões. Pedir o documento autoriza sua gravação, mas não aprova o conteúdo: sem confirmação explícita ou com pendências materiais, ele fica como rascunho. Se dispensar o documento, a conversa termina no chat, sem criar arquivos. Se quiser o documento, basta responder, sem outra invocação da skill.
+Se você corrigir algo, ela retoma apenas os pontos afetados. Respostas ambíguas são esclarecidas somente no que falta. Confirmações e autorizações já dadas para o mesmo conteúdo e entrega são reaproveitadas, sem repetir uma escolha já feita.
+
+Fora da escolha explícita da opção 2, confirmar o entendimento por si só não autoriza gravar um arquivo. Pedir um documento autoriza sua gravação, mas não aprova automaticamente o conteúdo: sem confirmação explícita ou com pendências materiais, ele fica como rascunho. Nenhuma opção autoriza executar o plano ou as sugestões.
 
 ## Documento opcional
 

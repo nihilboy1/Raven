@@ -47,7 +47,7 @@ Forneca os codigos das questoes, o contexto necessario, as fontes e as restricoe
 
 Use blocos curtos por questao ou decisao; contexto e pendencias aparecem somente quando uteis. Nao repita resumos nem crie blocos vazios para cumprir formato.
 
-**Emojis no chat:** 🐦‍⬛ apenas na primeira resposta a uma chamada explicita da skill pelo usuario, sem o nome da skill; nao repetir nas continuacoes nem no fechamento. 🔎 pergunta; 💡 recomendacao fundamentada; ✅ decisao alinhada; 📄 pergunta sobre gerar documento.
+**Emojis no chat:** 🐦‍⬛ apenas na primeira resposta a uma chamada explicita da skill pelo usuario, sem o nome da skill; nao repetir nas continuacoes nem no fechamento. 🔎 pergunta; 💡 recomendacao fundamentada; ✅ decisao alinhada; 📄 pergunta sobre gerar documento; 1️⃣ 2️⃣ 3️⃣ opcoes de fechamento.
 
 Faca perguntas e colete aprovacoes exclusivamente por texto no chat, nunca com `request_user_input`, `request_user_input_async`, equivalentes ou formularios. Apresente a rodada na resposta final e aguarde a resposta escrita do usuario. Atualizacoes intermediarias comunicam descobertas e proximos passos, sem perguntas.
 
@@ -57,9 +57,15 @@ Nao conduza a conversa para preencher um modelo documental. Resolva as questoes 
 
 Proponha o fechamento quando o objetivo da conversa estiver atendido e nao houver decisoes materiais abertas. Resuma o entendimento, os principais achados ou decisoes e as limitacoes relevantes, conforme o assunto. Encerre apos resolver as confirmacoes e entregar o documento, se solicitado.
 
-Confirmacao do entendimento e autorizacao de arquivo sao independentes. Para cada uma ainda ausente, pergunte separadamente se podem fechar o entendimento e se deseja gerar ou atualizar um documento Markdown ou encerrar no chat. Aguarde a resposta; se apenas uma vier, esclareca somente a outra. Reaproveite confirmacoes e autorizacoes explicitas ja dadas para o mesmo conteudo e entrega.
+Depois do resumo, apresente uma unica pergunta de fechamento com o proximo codigo `Q` da entrevista e estas tres opcoes, nesta ordem e com estes emojis. O usuario pode responder apenas `1`, `2` ou `3`:
 
-Se houver correcoes ou novas escolhas materiais, retome apenas os pontos afetados e apresente o resumo revisado. Se o usuario confirmar o fechamento e dispensar o documento, encerre no chat sem criar ou alterar arquivos. Se autorizar o documento, salve-o sem exigir outra invocacao da skill.
+1️⃣ Concordo com o entendimento e quero encerrar no chat.
+2️⃣ Concordo com o entendimento e quero que escreva o plano em `.md` agora.
+3️⃣ Quero mais uma rodada de questionamento critico sobre o assunto.
+
+Aguarde a escolha antes de seguir. A opcao 1 confirma o entendimento e encerra sem criar ou alterar arquivos. A opcao 2 confirma o entendimento e autoriza escrever ou atualizar o plano em Markdown imediatamente, sem outra confirmacao ou invocacao da skill; nao autoriza executar o plano. A opcao 3 retoma a entrevista para aprofundar premissas, consequencias ou alternativas pertinentes, preservando os codigos das questoes e as decisoes ja aprovadas. Ao propor novamente o fechamento, apresente o resumo atualizado e as mesmas tres opcoes.
+
+Aceite tambem respostas por escrito e reaproveite confirmacoes e autorizacoes explicitas ja dadas para o mesmo conteudo e entrega; nao repita a escolha se o usuario ja definiu o caminho. Se a resposta for ambigua, esclareca somente o que falta, sem presumir aprovacao. Se houver correcoes ou novas escolhas materiais, retome apenas os pontos afetados e apresente o resumo revisado.
 
 Um pedido de documento ja autoriza sua gravacao, mas nao aprova seu conteudo. Sem confirmacao explicita correspondente, ou com pendencias materiais, identifique-o como rascunho e registre as pendencias. Respeite pedidos de pausa ou de analise sem gravacao.
 
